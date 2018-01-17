@@ -5,16 +5,14 @@ class Shorty
     def reduce(string)
       return unless string
       res = reduce_string(string)
-      reduce_string(res, true)
+      reduce_string(res.reverse).reverse
     end
 
     private
 
-    def reduce_string(string, reversed_mode = false)
-      string = string.reverse if reversed_mode
+    def reduce_string(string)
       ranges = find_ranges(string)
-      result = reduce_ranges(ranges).join
-      reversed_mode ? result.reverse : result
+      reduce_ranges(ranges).join
     end
 
     def find_ranges(string)
